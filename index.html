@@ -7,9 +7,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <h1 id="airec">Beat Your Friend 3 times <span id="wheel">🗘</span></h1>
     <div id="bind">
-    <button id="O">Play as O</button>
-    <button id="X">Play as X</button>
+        <button id="O">Play as O</button>
+        <button id="X">Play as X</button>
+        <button id="play-ai" disabled>Play With AI</button>
     </div>
     <div class="container">
         <h1 id="head">Tic Tac 🦶🏻</h1>
@@ -30,7 +32,7 @@
                 <div class="cell" onclick="handleMove(2, 2)"></div>
             </div>
         </div>
-        <p id="turn-message" class="turn-message">Player <span>X's</span> turn</p>
+        <p id="turn-message" class="turn-message">Player <span id="pturn">X's</span> turn</p>
         <button onclick="resetGame()">Reset Game</button>
     </div>
     <script src="script.js"></script>
