@@ -14,6 +14,7 @@ body {
 }
 
 .game-board {
+    color: yellow;
     border: 2px solid white;
     border-radius: 5px;
     display: inline-block;
@@ -72,3 +73,5 @@ button:hover {
     color: black;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
+
+
