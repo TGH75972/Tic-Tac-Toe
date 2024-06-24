@@ -74,4 +74,42 @@ button:hover {
     font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+#O{
+    display: block;
+    position: absolute;
+    right: 1000px;
+}
+
+#X{
+    display: block;
+    position: absolute;
+    right: 1000px;
+    top: 400px;
+}
+
+#bind{
+    display: flex;
+
+}
+
+span{
+    display: inline-block;
+    font-weight: bold;
+    padding: 5px;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    animation: aura 3s ease-in 0s infinite;
+}
+
+@keyframes aura{
+    from{
+        color: white;
+        background-color: black;
+    }
+    to{
+        color: black;
+        background-color: white;
+    }
+}
 
