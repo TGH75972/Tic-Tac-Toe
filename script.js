@@ -9,12 +9,22 @@ let gameBoard = [
     [EMPTY_CELL, EMPTY_CELL, EMPTY_CELL]
 ];
 let gameActive = true;
+let playerXWins = 0;
+let playerOWins = 0;
+let aiEnabled = false;
 
 document.getElementById('X').addEventListener('click', () => setPlayer(PLAYER_X));
 document.getElementById('O').addEventListener('click', () => setPlayer(PLAYER_O));
+document.getElementById('play-ai').addEventListener('click', () => enableAI());
 
 function setPlayer(player) {
     currentPlayer = player;
+    aiEnabled = false;
+    resetGame();
+}
+
+function enableAI() {
+    aiEnabled = true;
     resetGame();
 }
 
@@ -37,6 +47,17 @@ function handleMove(row, col) {
         }
         document.getElementById('turn-message').textContent = `Player ${currentPlayer} wins!`;
         gameActive = false;
+
+        if (currentPlayer === PLAYER_X) {
+            playerXWins++;
+        } else {
+            playerOWins++;
+        }
+
+        if (playerXWins >= 3 || playerOWins >= 3) {
+            document.getElementById('play-ai').disabled = false;
+        }
+
         return;
     }
 
@@ -48,6 +69,24 @@ function handleMove(row, col) {
 
     currentPlayer = currentPlayer === PLAYER_X ? PLAYER_O : PLAYER_X;
     document.getElementById('turn-message').textContent = `Player ${currentPlayer}'s turn`;
+
+    if (aiEnabled && currentPlayer === PLAYER_O) {
+        aiMove();
+    }
+}
+
+function aiMove() {
+    if (!gameActive) return;
+
+    // Basic AI logic to choose the first available cell
+    for (let i = 0; i < 3; i++) {
+        for (let j = 0; j < 3; j++) {
+            if (gameBoard[i][j] === EMPTY_CELL) {
+                handleMove(i, j);
+                return;
+            }
+        }
+    }
 }
 
 function checkWin(player) {
@@ -111,4 +150,8 @@ function resetGame() {
     });
 
     document.getElementById('turn-message').textContent = `Player ${currentPlayer}'s turn`;
+
+    if (aiEnabled && currentPlayer === PLAYER_O) {
+        aiMove();
+    }
 }
